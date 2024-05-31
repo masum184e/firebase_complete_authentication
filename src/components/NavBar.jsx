@@ -3,8 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 const NavBar = () => {
     const navigationList = <>
         <li className="mx-2 text-white"><NavLink className={({ isActive }) => isActive ? "font-semibold" : ""} to="/">Home</NavLink></li>
-        <li className="mx-2 text-white"><NavLink className={({ isActive }) => isActive ? "font-semibold" : ""} to="/">NextAuth</NavLink></li>
-        <li className="mx-2 text-white"><NavLink className={({ isActive }) => isActive ? "font-semibold" : ""} to="/">OAuth</NavLink></li>
+        <li className="mx-2 text-white"><NavLink className={({ isActive }) => isActive ? "font-semibold" : ""} to="/next">NextAuth</NavLink></li>
+        <li className="mx-2 text-white"><NavLink className={({ isActive }) => isActive ? "font-semibold" : ""} to="/oauth">OAuth</NavLink></li>
     </>
     return (
         <>
