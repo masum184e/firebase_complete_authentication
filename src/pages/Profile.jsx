@@ -16,15 +16,25 @@ const Profile = () => {
   };
   return (
     <>
-      <div className="flex mt-8">
+      <div className="flex mt-8 gap-5">
         <div className="flex-1">
-            <div className="flex gap-4 items-center"> 
-                <img className="w-20 rounded-full border-2 border-[#ffbe00] p-2" src="/images/logo.png" alt="" />
-                <div>
-                    <h2 className="text-4xl font-bold">Masum Billah</h2>
-                    <h4>masum184e@gmail.com</h4>
-                </div>
+          <div className="flex gap-4 items-center mb-2">
+            <img
+              className="w-20 rounded-full border-2 border-[#ffbe00] p-2"
+              src="/images/logo.png"
+              alt=""
+            />
+            <div>
+              <h2 className="text-4xl font-bold">Masum Billah</h2>
+              <h4>masum184e@gmail.com</h4>
             </div>
+          </div>
+          <button
+            className="btn btn-block btn-warning text-white mt-24"
+            type="button"
+          >
+            Sign Out
+          </button>
         </div>
         <div className="flex-1">
           <form onSubmit={handleSubmit}>
