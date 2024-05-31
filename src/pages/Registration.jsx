@@ -38,13 +38,14 @@ const Registration = () => {
                 <label className="font-semibold text-lg" htmlFor="password">Password</label>
                 <input onChange={handleChange} className="w-full border-2 outline-borderColor border-borderColor rounded py-1 px-2 mt-1" placeholder="Enter 6 character or more" type="password" name="password" id="password" value={registrationData.password} />
               </div>
-              <button className="btn btn-block btn-warning text-white" type="button">Join</button>
+              <button className="btn btn-block btn-warning text-white" type="submit">Join</button>
             </form>
             <div className="divider">OR</div>
             <SocialAuthentication />
           </div>
         </div>
         <div className="flex-1">
+          <img src="/images/registration.png" alt="REGISTRATION" className="h-full w-full" />
         </div>
       </div>
     </>
