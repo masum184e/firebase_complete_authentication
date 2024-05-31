@@ -1,6 +1,8 @@
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Profile = () => {
+  const { loggedInUserData } = useAuth();
   const [changePasswordData, setChangePasswordData] = useState({
     newPwd: "",
     reTypePwd: "",
@@ -21,12 +23,14 @@ const Profile = () => {
           <div className="flex gap-4 items-center mb-2">
             <img
               className="w-20 rounded-full border-2 border-[#ffbe00] p-2"
-              src="/images/logo.png"
-              alt=""
+              src={loggedInUserData.photoURL}
+              alt={loggedInUserData.displayName}
             />
             <div>
-              <h2 className="text-4xl font-bold">Masum Billah</h2>
-              <h4>masum184e@gmail.com</h4>
+              <h2 className="text-4xl font-bold">
+                {loggedInUserData.displayName}
+              </h2>
+              <h4>{loggedInUserData.email}</h4>
             </div>
           </div>
           <button
