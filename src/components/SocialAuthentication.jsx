@@ -1,15 +1,27 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const SocialAuthentication = () => {
   const { googleLogin } = useAuth();
+  const navigate = useNavigate();
+  const loginWithGoogle = async () => {
+    try {
+      await googleLogin();
+      console.log("Log In With Google");
+      console.log(location);
+      navigate(location?.state ?? "/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
   const loginWIthFacebook = async () => {};
   return (
     <>
       <div className="space-y-2">
         <button
-          onClick={googleLogin}
+          onClick={loginWithGoogle}
           className="btn btn-outline border-warning btn-block hover:bg-white hover:text-black"
         >
           <FcGoogle className="text-xl" />
