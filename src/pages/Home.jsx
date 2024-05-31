@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
 import { FaAnglesRight } from "react-icons/fa6";
 
 const Home = () => {
   return (
-    <div>
-      <NavBar />
-      <div className="max-w-screen-xl mx-2 lg:mx-auto border-1 border-red-500">
         <div className="flex items-center">
           <div className="flex-1">
             <h3 className="text-[#29444d] text-xl font-semibold mb-4">
@@ -44,8 +40,6 @@ const Home = () => {
             <img className="ml-auto" src="/images/banner.jpg" alt="BANNER" />
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 
