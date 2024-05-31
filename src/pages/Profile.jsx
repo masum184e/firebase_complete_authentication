@@ -1,8 +1,10 @@
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { loggedInUserData } = useAuth();
+  const navigate = useNavigate();
+  const { loggedInUserData, logOut } = useAuth();
   const [changePasswordData, setChangePasswordData] = useState({
     newPwd: "",
     reTypePwd: "",
@@ -15,6 +17,15 @@ const Profile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+  };
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+      console.log("Sign Out");
+      navigate(location?.state ?? "/");
+    } catch (error) {
+      console.error("Sign Out Failed:", error);
+    }
   };
   return (
     <>
@@ -36,6 +47,7 @@ const Profile = () => {
           <button
             className="btn btn-block btn-warning text-white mt-24"
             type="button"
+            onClick={handleSignOut}
           >
             Sign Out
           </button>
