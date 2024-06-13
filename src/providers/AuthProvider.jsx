@@ -9,7 +9,8 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-  updatePassword
+  updatePassword,
+  sendEmailVerification,
 } from "firebase/auth";
 
 import firebaseApp from "../firebase/firebase.config";
@@ -26,14 +27,20 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const updateDisplayName = async(displayName) => {
+  const emailVerification = async() => {
+    setLoading(true);
+    return sendEmailVerification(auth.currentUser).finally(() => {
+      setLoading(false);
+    });
+  };
+  const updateDisplayName = async (displayName) => {
     setLoading(true);
     // return updateProfile(auth.currentUser, { displayName, photoURL });
     return updateProfile(auth.currentUser, { displayName }).finally(() => {
       setLoading(false);
     });
   };
-  const changePassword = async(newPassword) => {
+  const changePassword = async (newPassword) => {
     setLoading(true);
     return updatePassword(auth.currentUser, newPassword).finally(() => {
       setLoading(false);
@@ -72,7 +79,8 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     logOut,
     updateDisplayName,
-    changePassword
+    changePassword,
+    emailVerification,
   };
 
   return (

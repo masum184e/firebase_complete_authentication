@@ -2,6 +2,7 @@ import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { MdOutlineVerified } from "react-icons/md";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -52,8 +53,9 @@ const Profile = () => {
               alt={loggedInUserData.displayName}
             />
             <div>
-              <h2 className="text-4xl font-bold">
+              <h2 className="text-4xl font-bold flex items-center gap-4 ">
                 {loggedInUserData.displayName}
+                {loggedInUserData.emailVerified? <MdOutlineVerified className="text-[#ffbe00]" />:""}
               </h2>
               <h4>{loggedInUserData.email}</h4>
             </div>

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 
 const Registration = () => {
-  const { loggedInUserData, registerUser, updateDisplayName } = useAuth();
+  const { loggedInUserData, registerUser, updateDisplayName, emailVerification } = useAuth();
   const navigate = useNavigate();
   const [registrationData, setRegistrationData] = useState({
     fullName: "",
@@ -20,8 +20,14 @@ const Registration = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await registerUser(registrationData.email, registrationData.password);
+      const user = await registerUser(registrationData.email, registrationData.password);
       await updateDisplayName(registrationData.fullName);
+      if (user) {
+        await emailVerification();
+        console.log("Verification email sent.");
+      } else {
+        console.log("No user is signed in.");
+      }
       navigate("/profile");
     } catch (error) {
       console.error("Registration failed:", error);
