@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import { useSearchParams } from "react-router-dom";
-// import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { verifyForgetPassword, confirmForgetPasswordReset } = useAuth();
-//   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const { verifyForgetPassword, confirmForgetPasswordReset, loginUser } =
+    useAuth();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [resetPasswordData, setResetPasswordData] = useState({
     newPwd: "",
@@ -21,9 +22,10 @@ const ResetPassword = () => {
     if (resetPasswordData.newPwd === resetPasswordData.reTypePwd) {
       try {
         const code = searchParams.get("oobCode");
-        await verifyForgetPassword(code);
         await confirmForgetPasswordReset(code, resetPasswordData.newPwd);
+        await loginUser(email, resetPasswordData.newPwd);
         toast.success("Password Reset Successfully");
+        navigate("/profile");
       } catch (error) {
         console.error("Password Changed Failed: ", error);
         toast.error(error.message);
@@ -36,6 +38,23 @@ const ResetPassword = () => {
     const { name, value } = event.target;
     setResetPasswordData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  useEffect(() => {
+    const fetchEmail = async () => {
+      const code = searchParams.get("oobCode");
+      if (code) {
+        try {
+          const email = await verifyForgetPassword(code);
+          setEmail(email);
+        } catch (error) {
+          toast.error("Invalid or expired password reset code.");
+        }
+      }
+    };
+
+    fetchEmail();
+  }, [searchParams]);
+
   return (
     <>
       <ToastContainer
