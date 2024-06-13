@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialAuthentication from "../components/SocialAuthentication";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const Registration = () => {
   const { loggedInUserData, registerUser, updateDisplayName } = useAuth();
@@ -24,7 +25,7 @@ const Registration = () => {
       navigate("/profile");
     } catch (error) {
       console.error("Registration failed:", error);
-      toast(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -36,6 +37,18 @@ const Registration = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="flex h-screen items-center max-w-screen-xl mx-auto">
         <div className="flex-1">
           <div className="w-[450px] p-4">

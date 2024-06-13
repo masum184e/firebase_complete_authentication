@@ -14,7 +14,7 @@ const SocialAuthentication = () => {
       navigate(location?.state ?? "/profile");
     } catch (error) {
       console.error("Login failed:", error);
-      toast(error.message);
+      toast.error(error.message);
     }
   };
   const loginWIthFacebook = async () => {};

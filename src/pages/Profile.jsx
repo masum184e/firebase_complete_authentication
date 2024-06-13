@@ -22,23 +22,23 @@ const Profile = () => {
     if (changePasswordData.newPwd === changePasswordData.reTypePwd) {
       try {
         await changePassword(changePasswordData.newPwd);
-        toast("Password Changed Successfully");
+        toast.success("Password Changed Successfully");
       } catch (error) {
         console.error("Password Changed Failed: ", error);
-        toast(error.message);
+        toast.error(error.message);
       }
     } else {
-      toast("Password Mismatch");
+      toast.error("Password Mismatch");
     }
   };
   const handleSignOut = async () => {
     try {
       await logOut();
-      toast("Sign Out Successfully");
+      toast.success("Sign Out Successfully");
       navigate(location?.state ?? "/");
     } catch (error) {
       console.error("Sign Out Failed:", error);
-      toast(error.message);
+      toast.error(error.message);
     }
   };
   return (
