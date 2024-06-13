@@ -10,8 +10,7 @@ const SocialAuthentication = () => {
     try {
       await googleLogin();
       console.log("Log In With Google");
-      console.log(location);
-      navigate(location?.state ?? "/");
+      navigate(location?.state ?? "/profile");
     } catch (error) {
       console.error("Login failed:", error);
     }
