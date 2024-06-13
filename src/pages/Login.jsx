@@ -4,8 +4,11 @@ import SocialAuthentication from "../components/SocialAuthentication";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const { loggedInUserData, loginUser } = useAuth();
   const navigate = useNavigate();
   const [loginData, setloginData] = useState({
@@ -84,16 +87,19 @@ const Login = () => {
                 <label className="font-semibold text-lg" htmlFor="password">
                   Password
                 </label>
-                <input
-                  onChange={handleChange}
-                  className="w-full border-2 outline-borderColor border-borderColor rounded py-1 px-2 mt-1"
-                  placeholder="Enter 6 character or more"
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={loginData.password}
-                  required
-                />
+                <div className="relative">
+                  <input
+                    onChange={handleChange}
+                    className="w-full border-2 outline-borderColor border-borderColor rounded py-1 px-2 mt-1"
+                    placeholder="Enter 6 character or more"
+                    type= {showPassword?"text":"password"}
+                    name="password"
+                    id="password"
+                    value={loginData.password}
+                    required
+                  />
+                  <button onClick={()=>setShowPassword(!showPassword)} className="absolute right-3 top-3">{showPassword?<FaEye className="text-xl" />:<FaEyeSlash className="text-xl" />} </button>
+                </div>
               </div>
               <button
                 className="btn btn-block btn-warning text-white"
