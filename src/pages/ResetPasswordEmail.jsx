@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 const ResetPasswordEmail = () => {
   const { forgetPassword } = useAuth();
   const navigate = useNavigate();
-  const [resetPasswordData, setResetPasswordData] = useState({
+  const [resetPasswordEmailData, setResetPasswordEmailData] = useState({
     email: "",
   });
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await forgetPassword(resetPasswordData.email);
+      await forgetPassword(resetPasswordEmailData.email);
       toast.success("Reset Password Email Sent Successfully");
       navigate("/login");
     } catch (error) {
@@ -22,7 +22,7 @@ const ResetPasswordEmail = () => {
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setResetPasswordData((prevData) => ({ ...prevData, [name]: value }));
+    setResetPasswordEmailData((prevData) => ({ ...prevData, [name]: value }));
   };
   return (
     <>
@@ -54,7 +54,7 @@ const ResetPasswordEmail = () => {
               type="email"
               name="email"
               id="email"
-              value={resetPasswordData.email}
+              value={resetPasswordEmailData.email}
               required
             />
           </div>

@@ -11,7 +11,9 @@ import {
   updateProfile,
   updatePassword,
   sendEmailVerification,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
 } from "firebase/auth";
 
 import firebaseApp from "../firebase/firebase.config";
@@ -28,7 +30,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const emailVerification = async() => {
+  const emailVerification = async () => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser).finally(() => {
       setLoading(false);
@@ -59,12 +61,26 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-  const forgetPassword = async(email) => {
+
+  const forgetPassword = async (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email).finally(() => {
       setLoading(false);
     });
   };
+  const verifyForgetPassword = async (code) => {
+    setLoading(true);
+    return verifyPasswordResetCode(auth, code).finally(() => {
+      setLoading(false);
+    });
+  };
+  const confirmForgetPasswordReset = async (code, newPassword) => {
+    setLoading(true);
+    return confirmPasswordReset(auth, code, newPassword).finally(() => {
+      setLoading(false);
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoggedInUserData(currentUser);
@@ -87,7 +103,9 @@ const AuthProvider = ({ children }) => {
     updateDisplayName,
     changePassword,
     emailVerification,
-    forgetPassword
+    forgetPassword,
+    verifyForgetPassword,
+    confirmForgetPasswordReset,
   };
 
   return (
