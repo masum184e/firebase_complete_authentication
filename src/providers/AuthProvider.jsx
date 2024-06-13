@@ -26,10 +26,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const updateDisplayName = (displayName) => {
+  const updateDisplayName = async(displayName) => {
     setLoading(true);
     // return updateProfile(auth.currentUser, { displayName, photoURL });
-    return updateProfile(auth.currentUser, { displayName });
+    return updateProfile(auth.currentUser, { displayName }).finally(() => {
+      setLoading(false);
+    });
   };
   const changePassword = async(newPassword) => {
     setLoading(true);

@@ -48,7 +48,7 @@ const Profile = () => {
           <div className="flex gap-4 items-center mb-2">
             <img
               className="w-20 rounded-full border-2 border-[#ffbe00] p-2"
-              src={loggedInUserData.photoURL}
+              src={loggedInUserData.photoURL?loggedInUserData.photoURL:"/images/avatar.jpg"}
               alt={loggedInUserData.displayName}
             />
             <div>

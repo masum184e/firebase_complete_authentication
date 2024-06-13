@@ -92,7 +92,7 @@ const NavBar = () => {
                       loggedInUserData.photoURL ? (
                         <img
                           className="rounded-full h-10 ml-2 border-2 border-[#fea511] bg-[#fea511]"
-                          src={loggedInUserData.photoURL}
+                          src={loggedInUserData.photoURL?loggedInUserData.photoURL:"/images/avatar.jpg"}
                           alt={
                             loggedInUserData.displayName
                               ? loggedInUserData.displayName
