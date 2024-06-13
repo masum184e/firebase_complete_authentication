@@ -2,6 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SocialAuthentication = () => {
   const { googleLogin } = useAuth();
@@ -13,6 +14,7 @@ const SocialAuthentication = () => {
       navigate(location?.state ?? "/profile");
     } catch (error) {
       console.error("Login failed:", error);
+      toast(error.message);
     }
   };
   const loginWIthFacebook = async () => {};

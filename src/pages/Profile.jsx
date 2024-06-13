@@ -22,12 +22,13 @@ const Profile = () => {
     if (changePasswordData.newPwd === changePasswordData.reTypePwd) {
       try {
         await changePassword(changePasswordData.newPwd);
-        console.log("Password Changed");
+        toast("Password Changed Successfully");
       } catch (error) {
         console.error("Password Changed Failed: ", error);
+        toast(error.message);
       }
     } else {
-      console.log("Password Mismatch");
+      toast("Password Mismatch");
     }
   };
   const handleSignOut = async () => {

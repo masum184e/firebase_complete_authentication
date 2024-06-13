@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SocialAuthentication from "../components/SocialAuthentication";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const { loggedInUserData, registerUser, updateDisplayName } = useAuth();
@@ -23,6 +24,7 @@ const Registration = () => {
       navigate("/profile");
     } catch (error) {
       console.error("Registration failed:", error);
+      toast(error.message);
     }
   };
 
@@ -59,6 +61,7 @@ const Registration = () => {
                   name="fullName"
                   id="fullName"
                   value={registrationData.fullName}
+                  required
                 />
               </div>
               <div className="my-6">
@@ -73,6 +76,7 @@ const Registration = () => {
                   name="email"
                   id="email"
                   value={registrationData.email}
+                  required
                 />
               </div>
               <div className="my-6">
@@ -87,6 +91,7 @@ const Registration = () => {
                   name="password"
                   id="password"
                   value={registrationData.password}
+                  required
                 />
               </div>
               <button
