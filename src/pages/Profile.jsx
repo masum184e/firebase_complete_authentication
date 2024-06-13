@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Profile = () => {
     reTypePwd: "",
   });
 
-  const handleChange = async(event) => {
+  const handleChange = async (event) => {
     const { name, value } = event.target;
     setChangePasswordData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -18,24 +19,25 @@ const Profile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(changePasswordData.newPwd===changePasswordData.reTypePwd){
+    if (changePasswordData.newPwd === changePasswordData.reTypePwd) {
       try {
         await changePassword(changePasswordData.newPwd);
         console.log("Password Changed");
       } catch (error) {
         console.error("Password Changed Failed: ", error);
       }
-    }else{
-      console.log("Password Mismatch")
+    } else {
+      console.log("Password Mismatch");
     }
   };
   const handleSignOut = async () => {
     try {
       await logOut();
-      console.log("Sign Out");
+      toast("Sign Out Successfully");
       navigate(location?.state ?? "/");
     } catch (error) {
       console.error("Sign Out Failed:", error);
+      toast(error.message);
     }
   };
   return (
