@@ -36,7 +36,7 @@ const NavBar = () => {
     try {
       await logOut();
       console.log("Sign Out");
-      navigate(location?.state ?? "/");
+      navigate(location?.state ?? "/login");
     } catch (error) {
       console.error("Sign Out Failed:", error);
     }
