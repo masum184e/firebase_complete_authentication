@@ -31,9 +31,11 @@ const AuthProvider = ({ children }) => {
     // return updateProfile(auth.currentUser, { displayName, photoURL });
     return updateProfile(auth.currentUser, { displayName });
   };
-  const changePassword = (newPassword) => {
+  const changePassword = async(newPassword) => {
     setLoading(true);
-    return updatePassword(auth.currentUser, newPassword);
+    return updatePassword(auth.currentUser, newPassword).finally(() => {
+      setLoading(false);
+    });
   };
   const loginUser = (email, password) => {
     setLoading(true);
