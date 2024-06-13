@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SocialAuthentication from "../components/SocialAuthentication";
 import useAuth from "../hooks/useAuth";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
@@ -83,7 +82,7 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className="my-6">
+              <div className="mt-6">
                 <label className="font-semibold text-lg" htmlFor="password">
                   Password
                 </label>
@@ -92,14 +91,28 @@ const Login = () => {
                     onChange={handleChange}
                     className="w-full border-2 outline-borderColor border-borderColor rounded py-1 px-2 mt-1"
                     placeholder="Enter 6 character or more"
-                    type= {showPassword?"text":"password"}
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     id="password"
                     value={loginData.password}
                     required
                   />
-                  <button onClick={()=>setShowPassword(!showPassword)} className="absolute right-3 top-3">{showPassword?<FaEye className="text-xl" />:<FaEyeSlash className="text-xl" />} </button>
+                  <button
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-3"
+                  >
+                    {showPassword ? (
+                      <FaEye className="text-xl" />
+                    ) : (
+                      <FaEyeSlash className="text-xl" />
+                    )}{" "}
+                  </button>
                 </div>
+              </div>
+              <div className="text-right">
+                <Link to="/reset-password-email" className="text-warning">
+                  Reset Password ?
+                </Link>
               </div>
               <button
                 className="btn btn-block btn-warning text-white"

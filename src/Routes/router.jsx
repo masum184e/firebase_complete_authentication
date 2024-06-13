@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Root from "../layout/Root";
 import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
+import ResetPasswordEmail from "../pages/ResetPasswordEmail";
 
 const router = createBrowserRouter([
   {
@@ -26,14 +27,15 @@ const router = createBrowserRouter([
         ),
       },
     ],
-  },
-  {
+  },{
     path: "/login",
     element: <Login />,
-  },
-  {
+  },{
     path: "/registration",
     element: <Registration />,
+  },{
+    path: "/reset-password-email",
+    element: <ResetPasswordEmail />,
   },
 ]);
 

@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-  const forgetPassword = (email) => {
+  const forgetPassword = async(email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email).finally(() => {
       setLoading(false);
