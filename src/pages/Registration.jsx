@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link,useNavigate  } from "react-router-dom";
 import SocialAuthentication from "../components/SocialAuthentication";
+import useAuth from "../hooks/useAuth";
 
 const Registration = () => {
+  const { loggedInUserData } = useAuth();
+  const navigate = useNavigate();
   const [registrationData, setRegistrationData] = useState({
     fullName: "",
     email: "",
@@ -15,6 +18,12 @@ const Registration = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
   }
+
+  useEffect(() => {
+    if (loggedInUserData !== null && loggedInUserData !== undefined) {
+      return navigate("/");
+    }
+  }, [navigate, loggedInUserData])
 
   return (
     <>
