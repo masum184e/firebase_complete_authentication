@@ -4,7 +4,7 @@ import SocialAuthentication from "../components/SocialAuthentication";
 import useAuth from "../hooks/useAuth";
 
 const Login = () => {
-  const { loggedInUserData } = useAuth();
+  const { loggedInUserData, loginUser } = useAuth();
   const navigate = useNavigate();
   const [loginData, setloginData] = useState({
     email: "",
@@ -18,7 +18,12 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    try {
+      await loginUser(loginData.email, loginData.password);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   }
 
   useEffect(() => {
@@ -45,7 +50,7 @@ const Login = () => {
                 <label className="font-semibold text-lg" htmlFor="password">Password</label>
                 <input onChange={handleChange} className="w-full border-2 outline-borderColor border-borderColor rounded py-1 px-2 mt-1" placeholder="Enter 6 character or more" type="password" name="password" id="password" value={loginData.password} />
               </div>
-              <button className="btn btn-block btn-warning text-white" type="button">Login</button>
+              <button className="btn btn-block btn-warning text-white" type="submit">Login</button>
             </form>
             <div className="divider">OR</div>
             <SocialAuthentication />
