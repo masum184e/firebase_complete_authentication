@@ -4,19 +4,30 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { loggedInUserData, logOut } = useAuth();
+  const { loggedInUserData, logOut, changePassword } = useAuth();
   const [changePasswordData, setChangePasswordData] = useState({
     newPwd: "",
     reTypePwd: "",
   });
 
-  const handleChange = (event) => {
+  const handleChange = async(event) => {
     const { name, value } = event.target;
     setChangePasswordData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(changePasswordData.newPwd===changePasswordData.reTypePwd){
+      try {
+        await changePassword(changePasswordData.newPwd);
+        console.log("Password Changed");
+      } catch (error) {
+        console.error("Password Changed Failed: ", error);
+      }
+    }else{
+      console.log("Password Mismatch")
+    }
   };
   const handleSignOut = async () => {
     try {
@@ -66,6 +77,7 @@ const Profile = () => {
                 name="newPwd"
                 id="newPwd"
                 value={changePasswordData.newPwd}
+                required
               />
             </div>
             <div className="my-6">
@@ -80,6 +92,7 @@ const Profile = () => {
                 name="reTypePwd"
                 id="reTypePwd"
                 value={changePasswordData.reTypePwd}
+                required
               />
             </div>
             <button

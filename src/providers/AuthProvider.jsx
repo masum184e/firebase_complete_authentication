@@ -8,7 +8,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateProfile
+  updateProfile,
+  updatePassword
 } from "firebase/auth";
 
 import firebaseApp from "../firebase/firebase.config";
@@ -27,8 +28,13 @@ const AuthProvider = ({ children }) => {
   };
   const updateDisplayName = (displayName) => {
     setLoading(true);
-    return updateProfile(auth.currentUser, { displayName});
-}
+    // return updateProfile(auth.currentUser, { displayName, photoURL });
+    return updateProfile(auth.currentUser, { displayName });
+  };
+  const changePassword = (newPassword) => {
+    setLoading(true);
+    return updatePassword(auth.currentUser, newPassword);
+  };
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -61,7 +67,8 @@ const AuthProvider = ({ children }) => {
     loginUser,
     googleLogin,
     logOut,
-    updateDisplayName
+    updateDisplayName,
+    changePassword
   };
 
   return (
