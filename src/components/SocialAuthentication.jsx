@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SocialAuthentication = () => {
-  const { googleLogin } = useAuth();
+  const { googleLogin, facebookLogin } = useAuth();
   const navigate = useNavigate();
   const loginWithGoogle = async () => {
     try {
@@ -17,7 +17,16 @@ const SocialAuthentication = () => {
       toast.error(error.message);
     }
   };
-  const loginWIthFacebook = async () => {};
+  const loginWIthFacebook = async () => {
+    try {
+      await facebookLogin();
+      console.log("Log In With Facebook");
+      navigate(location?.state ?? "/profile");
+    } catch (error) {
+      console.error("Login failed:", error);
+      toast.error(error.message);
+    }
+  };
   return (
     <>
       <div className="space-y-2">
