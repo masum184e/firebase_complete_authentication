@@ -16,8 +16,20 @@ npm install
 npm run dev
 ```
 
-# Key Library
-|            Tech           |                                           Uses                                             |
+# Environment Variables
+```
+VITE_APIKEY=your-api-key
+VITE_AUTHDOMAIN=your-auth-domain
+VITE_PROJECTID=your-project-id
+VITE_STORAGEBUCKET=your-storage-bucket
+VITE_MESSAGINGSENDERID=your-messaging-sender-id
+VITE_APPID=your-app-id
+VITE_MEASUREMENTID=your-measurement-id
+```
+Copy and paste it from your firebase project setting.
+
+# Libraries
+|          Library          |                                           Uses                                             |
 | ------------------------- |--------------------------------------------------------------------------------------------|
 | vite                      | A fast build tool and development server.                                                  |
 | react                     | JavaScript library for building user interfaces.                                           |
