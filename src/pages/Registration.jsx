@@ -29,7 +29,7 @@ const Registration = () => {
         await emailVerification();
         console.log("Verification email sent.");
       } else {
-        console.log("No user is signed in.");
+        throw new Error("Something wen wrong");
       }
       navigate("/profile");
     } catch (error) {
