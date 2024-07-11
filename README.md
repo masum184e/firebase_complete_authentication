@@ -47,6 +47,7 @@ Copy and paste it from your firebase project setting.
     - Email(Form)
     - Google(Popup)
     - Facebook(Redirect)
+- Current User
 - Sign Out
 - Update Profile
 - Change Password
