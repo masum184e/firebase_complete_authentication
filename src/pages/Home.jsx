@@ -48,23 +48,23 @@ const Home = () => {
         </div>
       </div>
       <div className="flex justify-between">
-        <Link className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5 text-[#ee0097]">
+        <Link to="https://github.com/masum184e/graphql_complete_authentication" target="_blank" className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5 text-[#ee0097]">
           <GrGraphQl className="mx-auto text-4xl" />
           <h4>GraphQL Authentication</h4>
         </Link>
-        <Link className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5">
+        <Link to="https://github.com/masum184e/expressjs_complete_authentication" target="_blank" className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5">
           <SiExpress className="mx-auto text-4xl bg-gray-400 rounded-full p-1" />
           <h4 className="text-gray-400">ExpressJS Authentication</h4>
         </Link>
-        <Link className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5">
+        <Link to="https://github.com/masum184e/nextjs_complete_authentication" target="_blank" className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5">
           <TbBrandNextjs className="mx-auto text-4xl" />
           <h4>NextJS Authentication</h4>
         </Link>
-        <Link className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5 text-[#21bcfd]">
+        <Link to="https://github.com/masum184e/nextjs_complete_authentication" target="_blank" className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5 text-[#21bcfd]">
           <SiAdguard className="mx-auto text-4xl" />
           <h4>Next Auth Authentication</h4>
         </Link>
-        <Link className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5">
+        <Link to="https://github.com/masum184e/firebase_complete_authentication" target="_blank" className="border-[#fea511] border-2 w-50 h-50 flex flex-col rounded p-5">
           <TbBrandOauth className="mx-auto text-4xl" />
           <h4>OAuth Authentication</h4>
         </Link>

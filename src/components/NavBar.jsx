@@ -17,7 +17,7 @@ const NavBar = () => {
       <li className="mx-2 text-white">
         <NavLink
           className={({ isActive }) => (isActive ? "font-semibold" : "")}
-          to="/next"
+          to="https://nextjs-complete-authentication.vercel.app/"
         >
           NextAuth
         </NavLink>
@@ -25,7 +25,7 @@ const NavBar = () => {
       <li className="mx-2 text-white">
         <NavLink
           className={({ isActive }) => (isActive ? "font-semibold" : "")}
-          to="/oauth"
+          to="https://github.com/masum184e/firebase_complete_authentication"
         >
           OAuth
         </NavLink>
