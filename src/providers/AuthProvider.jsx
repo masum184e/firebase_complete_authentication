@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   GoogleAuthProvider,
-  FacebookAuthProvider ,
+  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
@@ -27,11 +27,13 @@ const AuthProvider = ({ children }) => {
   const [loggedInUserData, setLoggedInUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider ();
+  const facebookProvider = new FacebookAuthProvider();
 
   const registerUser = (email, password) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password).finally(() => {
+      setLoading(false);
+    });
   };
   const emailVerification = async () => {
     setLoading(true);
@@ -52,21 +54,29 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     });
   };
-  const loginUser = (email, password) => {
+  const loginUser = async (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password).finally(() => {
+      setLoading(false);
+    });
   };
-  const googleLogin = () => {
+  const googleLogin = async () => {
     setLoading(true);
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider).finally(() => {
+      setLoading(false);
+    });
   };
-  const facebookLogin = () => {
+  const facebookLogin = async () => {
     setLoading(true);
-    return signInWithRedirect(auth, facebookProvider);
+    return signInWithRedirect(auth, facebookProvider).finally(() => {
+      setLoading(false);
+    });
   };
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
-    return signOut(auth);
+    return signOut(auth).finally(() => {
+      setLoading(false);
+    });
   };
 
   const forgetPassword = async (email) => {
@@ -106,7 +116,7 @@ const AuthProvider = ({ children }) => {
     registerUser,
     loginUser,
     googleLogin,
-    facebookLogin, 
+    facebookLogin,
     logOut,
     updateDisplayName,
     changePassword,
