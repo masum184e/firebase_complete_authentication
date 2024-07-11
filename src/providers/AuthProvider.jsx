@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
 
-  const registerUser = (email, password) => {
+  const registerUser = async (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password).finally(() => {
       setLoading(false);
