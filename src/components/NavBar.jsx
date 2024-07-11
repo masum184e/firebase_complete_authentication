@@ -88,21 +88,19 @@ const NavBar = () => {
               {loggedInUserData ? (
                 <details className="dropdown dropdown-end dropdown-bottom">
                   <summary className="btn border-0 shadow-none outline-none focus:border-none focus:outline-none border-transparent bg-transparent hover:bg-transparent p-0">
-                    {
-                      loggedInUserData.photoURL ? (
-                        <img
-                          className="rounded-full h-10 ml-2 border-2 border-[#fea511] bg-[#fea511]"
-                          src={loggedInUserData.photoURL?loggedInUserData.photoURL:"/images/avatar.jpg"}
-                          alt={
-                            loggedInUserData.displayName
-                              ? loggedInUserData.displayName
-                              : "USER"
-                          }
-                        />
-                      ) : (
-                        <></>
-                      )
-                    }
+                    <img
+                      className="rounded-full h-10 ml-2 border-2 border-[#fea511] bg-[#fea511]"
+                      src={
+                        loggedInUserData.photoURL
+                          ? loggedInUserData.photoURL
+                          : "/images/avatar.jpg"
+                      }
+                      alt={
+                        loggedInUserData.displayName
+                          ? loggedInUserData.displayName
+                          : "USER"
+                      }
+                    />
                   </summary>
                   <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                     <li className="mx-4 mt-2 font-bold text-blue-500 disabled">
