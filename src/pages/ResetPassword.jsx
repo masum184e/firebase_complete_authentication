@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { loggedInUserData } = useAuth();
   const [email, setEmail] = useState("");
   const { verifyForgetPassword, confirmForgetPasswordReset, loginUser } =
     useAuth();
@@ -54,6 +55,10 @@ const ResetPassword = () => {
 
     fetchEmail();
   }, [searchParams]);
+
+  if (loggedInUserData) {
+    return <Navigate to="/profile"></Navigate>;
+  }
 
   return (
     <>

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ResetPasswordEmail = () => {
-  const { forgetPassword } = useAuth();
+  const { loggedInUserData, forgetPassword } = useAuth();
   const navigate = useNavigate();
   const [resetPasswordEmailData, setResetPasswordEmailData] = useState({
     email: "",
@@ -24,6 +24,11 @@ const ResetPasswordEmail = () => {
     const { name, value } = event.target;
     setResetPasswordEmailData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  if (loggedInUserData) {
+    return <Navigate to="/profile"></Navigate>;
+  }
+
   return (
     <>
       <ToastContainer
